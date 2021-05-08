@@ -3,12 +3,33 @@ $softMagenta: hsl(300, 69%, 71%);
 $opensans: "Open Sans", sans-serif;
 $poppins: "Poppins", sans-serif;
 
+@mixin flex($flex-direction, $justify, $align) {
+  display: flex;
+  flex-direction: $flex-direction;
+  justify-content: $justify;
+  align-items: $align;
+}
+
+// reset default styles
+
 *,
 *::after,
 *::before {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
+}
+
+a,
+a:visited {
+  color: #fff;
+  text-decoration: none;
+}
+
+ul {
+  list-style-type: none;
+  width: 20%;
+  @include flex(row, space-between, center);
 }
 
 :root {
@@ -23,6 +44,74 @@ $poppins: "Poppins", sans-serif;
   background-size: cover;
   position: relative;
   padding: 50px;
-  .logo {
+  @include flex(column, space-between, flex-start);
+  .header {
+    margin-bottom: 100px;
+    flex: 1;
+  }
+  .main {
+    @include flex(row, space-between, flex-start);
+    flex: 3;
+    .img {
+      flex: 2;
+      display: block;
+      width: 50%;
+    }
+    .content {
+      margin-left: 50px;
+      flex: 1;
+      color: #fff;
+      @include flex(column, space-between, flex-start);
+      font-family: $opensans;
+      .heading {
+        font-size: 2rem;
+        font-family: $poppins;
+        font-weight: 600;
+        padding: 50px 0;
+      }
+      .text {
+        opacity: 0.8;
+        font-size: 1rem;
+        line-height: 1.5;
+      }
+      .btn {
+        margin-top: 30px;
+        color: $violet;
+        font-family: $poppins;
+        background-color: #fff;
+        font-weight: 400;
+        padding: 10px 50px;
+        border-radius: 30px;
+        border: none;
+        font-size: 1.1rem;
+        box-shadow: 2px 10px 16px -4px #000011c9;
+      }
+    }
+  }
+  .footer {
+    width: 100%;
+    flex: 1;
+    @include flex(row, flex-end, center);
+    font-size: 25px;
+    .fab {
+      text-align: center;
+    }
+    .link {
+      @include flex(row, center, center);
+      transition: color 0.5s, border-color 0.5s;
+      border: 2px solid #fff;
+      height: 50px;
+      width: 50px;
+      border-radius: 50%;
+
+      &:hover,
+      &:active {
+        color: $softMagenta;
+        border-color: $softMagenta;
+        .fab {
+          border-color: $softMagenta;
+        }
+      }
+    }
   }
 }
